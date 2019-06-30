@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Script to get a valid oauth token response from the Geocaching.com website
 # Will use saved cookies or ask for credentials
