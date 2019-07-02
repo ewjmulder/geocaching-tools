@@ -8,3 +8,56 @@ Top left
 52.2227871 4.8357318
 Bottom right
 51.957631 5.5773948
+
+ζ GC_USERNAME=Team_Spoorloos python geocachingsitelib.py | jq -r .access_token | xargs echo "Authorization: Bearer" | curl --silent 'https://www.geocaching.com/api/proxy/web/search?box=52.067794%2C5.212669%2C52.056027%2C5.336266&take=500&asc=true&skip=0&sort=distance&origin=52.0618877444071%2C5.2744728326797485' -H @- | jq .
+{
+  "results": [
+    {
+      "id": 7033805,
+      "name": "Beukenstein - De Heuvel / The Hill",
+      "code": "GC81X1W",
+      "premiumOnly": false,
+      "favoritePoints": 17,
+      "geocacheType": 2,
+      "containerType": 8,
+      "difficulty": 1.5,
+      "terrain": 2,
+      "userFound": false,
+      "userDidNotFind": false,
+      "cacheStatus": 0,
+      "postedCoordinates": {
+        "latitude": 52.059333,
+        "longitude": 5.2763
+      },
+      "detailsUrl": "/geocache/GC81X1W",
+      "hasGeotour": false,
+      "hasLogDraft": false,
+      "placedDate": "2018-12-30T00:00:00",
+      "owner": {
+        "code": "PRHGRRM",
+        "username": "Team_Spoorloos"
+      },
+      "lastFoundDate": "2019-06-26T17:31:40"
+    }
+  ],
+  "total": 10
+}
+
+
+        'user:info': {
+            isLoggedIn: true,
+            username: "Team_Spoorloos",
+            userType: "Premium",
+            reqToken: "5MkjJfYiM3Tq2wdjL5PKIwEoh4c-Y9OmnVr9xZ-bNTlhP0T01-IWXTbtGzAVTfV1b5IOMUoWtUP-R4zSkwhkzMzeo5CLxXaHhmDKLKh0mWKqK0Sy0",
+            publicGuid: "35f0bb05-6271-49ef-9ed5-55cd5d7afce6",
+            avatarUrl: "https://img.geocaching.com/avatar/4604f31f-c95f-4227-85e4-a94c2de20f91.jpeg",
+            dateFormat: "dd/MMM/yyyy",
+            referenceCode: "PRHGRRM",
+            accountId:  15789221,
+            distanceUnit: "Metric",
+            homeLocation: {"Latitude":52.0618877444071,"Longitude":5.27447283267975},
+            locale: "en-US",
+            geocacheHideCount: 1
+            
+        },
+
