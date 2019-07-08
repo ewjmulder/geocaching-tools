@@ -6,17 +6,20 @@ import kotlinx.serialization.*
 import kotlinx.serialization.json.*
 
 @Serializable
-data class CacheResults(val results: List<CacheResult>)
+data class CacheResults(val results: List<CacheResult>, val total: Int)
 @Serializable
 data class CacheResult(val id: Int)
 
 
+@kotlinx.serialization.UnstableDefault
 fun main(args: Array<String>) {
     println("Start gathering caches...")
     val json = "./get_caches.sh 52 5 51 6 0 5".runCommand()
-    println("result: " + parse(json))
+    val results = parse(json)
+    println("results: " + results)
 }
 
+@kotlinx.serialization.UnstableDefault
 fun parse(jsonAsString: String) : CacheResults {
     return Json.nonstrict.parse(CacheResults.serializer(), jsonAsString)
 }
