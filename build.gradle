@@ -25,6 +25,8 @@ repositories {
 dependencies {
   compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.11.1"
+  compile 'org.jetbrains.exposed:exposed:0.16.1'
+  runtime 'org.postgresql:postgresql:42.2.6'
 }
 
 jar {
