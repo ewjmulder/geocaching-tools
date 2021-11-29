@@ -1,0 +1,4437 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "AdventuresApi"
+  },
+  "host": "labs-api.geocaching.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/Api/Accounts/Login": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_Login",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "consumerKey",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "loginRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Models.LoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Models.OAuthAccessTokenResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        }
+      }
+    },
+    "/Api/Accounts/IsUsernameAvailable": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_IsUsernameAvailable",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "consumerKey",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/Api/Accounts/IsEmailAvailable": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_IsEmailAvailable",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "consumerKey",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/Api/Accounts/RefreshAccessToken": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_RefreshAccessToken",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "consumerKey",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "refreshAccessTokenRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Models.RefreshAccessTokenRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Models.OAuthAccessTokenResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        }
+      }
+    },
+    "/Api/Accounts/GetAccount": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_GetAccount",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AccountModel"
+            }
+          },
+          "400": {
+            "description": "BadRequest"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        }
+      }
+    },
+    "/Api/Accounts/CreateAccount": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_CreateAccount",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "consumerKey",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.NewAccountModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AccountModel"
+            }
+          },
+          "400": {
+            "description": "BadRequest"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
+      }
+    },
+    "/Api/Accounts/CreateAccountV2": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_CreateAccountV2",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "consumerKey",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.NewAccountModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.CreateAccountResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
+      }
+    },
+    "/Api/Accounts/RecoverUsername": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_RecoverUsername",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "consumerKey",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "BadRequest"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        }
+      }
+    },
+    "/Api/Accounts/RecoverPassword": {
+      "get": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_RecoverPassword",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "consumerKey",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "204": {
+            "description": "NoContent"
+          },
+          "400": {
+            "description": "BadRequest"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        }
+      }
+    },
+    "/Api/Accounts/SocialMediaLogin": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_SocialMediaLogin",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "consumerKey",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.SocialMediaLoginModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Models.OAuthAccessTokenResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/Api/Accounts/OAuthLogin": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_OAuthLogin",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "consumerKey",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.OAuthLoginModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Models.OAuthAccessTokenResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NotFound"
+          },
+          "422": {
+            "description": "422"
+          }
+        }
+      }
+    },
+    "/Api/Accounts/OAuthLoginAndLinkAccount": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_OAuthLoginAndLinkAccount",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "consumerKey",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.OAuthLinkedAccountModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Models.OAuthAccessTokenResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "NotFound"
+          },
+          "422": {
+            "description": "422"
+          }
+        }
+      }
+    },
+    "/Api/Accounts/Settings/{scopeName}": {
+      "put": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_UpdateAccountSettings",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "scopeName",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "accountSettings",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/Api/Accounts/GetGDPRData": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_GetAccountGDPRData",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "publicGuid",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        }
+      }
+    },
+    "/Api/Accounts/DeleteAccount": {
+      "delete": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_DeleteAccount",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "publicGuid",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        }
+      }
+    },
+    "/Api/Accounts/SocialMediaCreateAccount": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_SocialMediaCreateAccount",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "consumerKey",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Models.SocialMediaCreateAccountModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Models.OAuthAccessTokenResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/Api/Accounts/OAuthCreateAccount": {
+      "post": {
+        "tags": [
+          "Accounts"
+        ],
+        "operationId": "Accounts_OAuthCreateAccount",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "consumerKey",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Models.OAuthCreateAccountModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Models.OAuthAccessTokenResponse"
+            }
+          },
+          "400": {
+            "description": "BadRequest"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "429": {
+            "description": "429"
+          },
+          "500": {
+            "description": "InternalServerError"
+          }
+        }
+      }
+    },
+    "/Api/ActivityLogs/Search": {
+      "get": {
+        "tags": [
+          "ActivityLogs"
+        ],
+        "operationId": "ActivityLogs_Search",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "adventureId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.PagedResultModel[GamePlayer.Business.WebAPI.Contracts.Models.ActivityLogModel]"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/Api/ActivityLogs/GetUserActivityLogForAdventure": {
+      "get": {
+        "tags": [
+          "ActivityLogs"
+        ],
+        "operationId": "ActivityLogs_GetUserActivityLogForAdventure",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "adventureId",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Properties can be null when no ActivityLog or Rating are found",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.UserActivityLogModel"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/Api/ActivityLogs/Delete": {
+      "delete": {
+        "tags": [
+          "ActivityLogs"
+        ],
+        "operationId": "ActivityLogs_Delete",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "adventureId",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "playerPublicGuid",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "204": {
+            "description": "NoContent"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/ActivityLogs/{id}": {
+      "put": {
+        "tags": [
+          "ActivityLogs"
+        ],
+        "operationId": "ActivityLogs_Put",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.ActivityLogModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.ActivityLogModel"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/AdventureLeaderboards/{id}": {
+      "get": {
+        "tags": [
+          "AdventureLeaderboards"
+        ],
+        "operationId": "AdventureLeaderboards_Get",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.PagedResultModel[GamePlayer.Business.WebAPI.Managers.AdventureLeaderboardManager]"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/BackfillPlayerStateTimeToComplete": {
+      "get": {
+        "tags": [
+          "AdventurePlayerStates"
+        ],
+        "operationId": "AdventurePlayerStates_BackfillPlayerStateTimeToComplete",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/AdventurePlayerStates/{id}": {
+      "get": {
+        "tags": [
+          "AdventurePlayerStates"
+        ],
+        "operationId": "AdventurePlayerStates_Get",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AdventurePlayerState"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/Api/Adventures/SearchV3": {
+      "get": {
+        "tags": [
+          "Adventures"
+        ],
+        "operationId": "Adventures_SearchV3",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "radiusMeters",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "excludeCompleted",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "origin.latitude",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "origin.longitude",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "origin.altitude",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "X-Consumer-Key",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.PagedResultModel[GamePlayer.Business.WebAPI.Contracts.Models.AdventureBasicInfoModel]"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/Api/Adventures/GetAdventureIdBySmartLink": {
+      "post": {
+        "tags": [
+          "Adventures"
+        ],
+        "operationId": "Adventures_GetAdventureIdBySmartLink",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "smartLink",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Consumer-Key",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "uuid",
+              "type": "string",
+              "example": "00000000-0000-0000-0000-000000000000"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/Api/Adventures/GetAdventureBasicInfo": {
+      "get": {
+        "tags": [
+          "Adventures"
+        ],
+        "operationId": "Adventures_GetAdventureBasicInfo",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "X-Consumer-Key",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AdventureBasicInfoModel"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Adventures"
+        ],
+        "operationId": "Adventures_GetAdventureBasicInfos",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "format": "uuid",
+                "type": "string",
+                "example": "00000000-0000-0000-0000-000000000000"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AdventureBasicInfoModel"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/Api/Adventures/GetMyAdventureBasicInfos": {
+      "get": {
+        "tags": [
+          "Adventures"
+        ],
+        "operationId": "Adventures_GetMyAdventureBasicInfos",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.PagedResultModel[GamePlayer.Business.WebAPI.Contracts.Models.AdventureBasicInfoModel]"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/Api/Adventures/GetAdventureCompletedByUsers": {
+      "post": {
+        "tags": [
+          "Adventures"
+        ],
+        "operationId": "Adventures_GetAdventureCompletedByUsers",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "format": "uuid",
+                "type": "string",
+                "example": "00000000-0000-0000-0000-000000000000"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AdventureCompletedByUsers"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/Api/Adventures/GetAllAdventureIds": {
+      "get": {
+        "tags": [
+          "Adventures"
+        ],
+        "operationId": "Adventures_GetAllAdventureBasicInfo",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "format": "uuid",
+                "type": "string",
+                "example": "00000000-0000-0000-0000-000000000000"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/Api/Adventures/ResetPlayerState": {
+      "post": {
+        "tags": [
+          "Adventures"
+        ],
+        "operationId": "Adventures_ResetPlayerState",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "adventureId",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        }
+      }
+    },
+    "/Api/Adventures/Report": {
+      "post": {
+        "tags": [
+          "Adventures"
+        ],
+        "operationId": "Adventures_Report",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.ReportAdventureModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      }
+    },
+    "/Api/Adventures/EnterFindCode": {
+      "post": {
+        "tags": [
+          "Adventures"
+        ],
+        "operationId": "Adventures_EnterFindCode",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.EnterFindCodeModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "int32",
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "type": "integer"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/Adventures/{id}": {
+      "get": {
+        "tags": [
+          "Adventures"
+        ],
+        "operationId": "Adventures_Get",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "X-Consumer-Key",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AdventureModel"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        }
+      }
+    },
+    "/api/builder/adventures/GetMyAdventures": {
+      "get": {
+        "tags": [
+          "BuilderAdventures"
+        ],
+        "operationId": "BuilderAdventures_GetMyAdventures",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Builder.Adventure"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/builder/adventures/{id}": {
+      "get": {
+        "tags": [
+          "BuilderAdventures"
+        ],
+        "operationId": "BuilderAdventures_Get",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Builder.Adventure"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "BuilderAdventures"
+        ],
+        "operationId": "BuilderAdventures_Put",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Builder.Adventure"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Builder.Adventure"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "BuilderAdventures"
+        ],
+        "operationId": "BuilderAdventures_Delete",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "204": {
+            "description": "NoContent"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/builder/adventures": {
+      "post": {
+        "tags": [
+          "BuilderAdventures"
+        ],
+        "operationId": "BuilderAdventures_Post",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Builder.Adventure"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Builder.Adventure"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/builder/adventures/CloneAdventure": {
+      "post": {
+        "tags": [
+          "BuilderAdventures"
+        ],
+        "operationId": "BuilderAdventures_CloneAdventure",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Builder.CloneAdventureModel"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Builder.Adventure"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/builder/adventures/Statistics": {
+      "get": {
+        "tags": [
+          "BuilderAdventures"
+        ],
+        "operationId": "BuilderAdventures_Statistics",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "adventurePlayerCount",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "geocachePlayerCount",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AdventureStatistics"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        }
+      }
+    },
+    "/api/builder/adventures/GetAdventureBasicInfos": {
+      "post": {
+        "tags": [
+          "BuilderAdventures"
+        ],
+        "operationId": "BuilderAdventures_GetAdventureBasicInfos",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AdventureBasicInfoModel"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/builder/adventures/GetAdventureBasicInfosV2": {
+      "post": {
+        "tags": [
+          "BuilderAdventures"
+        ],
+        "operationId": "BuilderAdventures_GetAdventureBasicInfosV2",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AdventureBasicInfoSearchRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.PagedResultModel[GamePlayer.Business.WebAPI.Contracts.Models.AdventureBasicInfoModel]"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/builder/adventures/GetAdminLevelStatistics": {
+      "get": {
+        "tags": [
+          "BuilderAdventures"
+        ],
+        "operationId": "BuilderAdventures_GetAdminLevelStatistics",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AdminLevelAdventureStatistics"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/builder/adventures/SanitizeAdventures": {
+      "post": {
+        "tags": [
+          "BuilderAdventures"
+        ],
+        "operationId": "BuilderAdventures_SanitizeAdventures",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/builder/adventures/PopulateAdventuresFirebaseDynamicLink": {
+      "post": {
+        "tags": [
+          "BuilderAdventures"
+        ],
+        "operationId": "BuilderAdventures_PopulateAdventuresFirebaseDynamicLink",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/builder/owners/{id}": {
+      "get": {
+        "tags": [
+          "BuilderOwners"
+        ],
+        "operationId": "BuilderOwners_Get",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.OwnerModel"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "BuilderOwners"
+        ],
+        "operationId": "BuilderOwners_Put",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.OwnerModel"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.OwnerModel"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/builder/owners/GetOwnersWithBuilderAccess": {
+      "post": {
+        "tags": [
+          "BuilderOwners"
+        ],
+        "operationId": "BuilderOwners_GetOwnersWithBuilderAccess",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.OwnerModel"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/builder/owners/BulkCreateOrUpdate": {
+      "post": {
+        "tags": [
+          "BuilderOwners"
+        ],
+        "operationId": "BuilderOwners_BulkCreateOrUpdate",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "ownerModels",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.OwnerModel"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.OwnerModel"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/DeleteExpired": {
+      "post": {
+        "tags": [
+          "Devices"
+        ],
+        "operationId": "Devices_DeleteExpired",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "X-Consumer-Key",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/Devices": {
+      "put": {
+        "tags": [
+          "Devices"
+        ],
+        "operationId": "Devices_Put",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "registrationToken",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Devices"
+        ],
+        "operationId": "Devices_Delete",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "registrationToken",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "X-Consumer-Key",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/Api/Discover/Playlists": {
+      "get": {
+        "tags": [
+          "Discover"
+        ],
+        "operationId": "Discover_GetPlaylists",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "X-Consumer-Key",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.PlaylistModel"
+              }
+            }
+          },
+          "304": {
+            "description": "NotModified"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/Api/GeocacheLogs/Archive": {
+      "post": {
+        "tags": [
+          "GeocacheLogs"
+        ],
+        "operationId": "GeocacheLogs_Archive",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "204": {
+            "description": "NoContent"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/Api/GeocacheLogs/Unarchive": {
+      "post": {
+        "tags": [
+          "GeocacheLogs"
+        ],
+        "operationId": "GeocacheLogs_Unarchive",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "204": {
+            "description": "NoContent"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/GeocacheLogs": {
+      "get": {
+        "tags": [
+          "GeocacheLogs"
+        ],
+        "operationId": "GeocacheLogs_Get",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "userGuid",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.GeocacheLogAdventureGrouping"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "NotFound"
+          }
+        }
+      }
+    },
+    "/api/Health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "operationId": "Health_Get",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/Ping": {
+      "get": {
+        "tags": [
+          "Ping"
+        ],
+        "operationId": "Ping_Get",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/Api/Ratings/Search": {
+      "get": {
+        "tags": [
+          "Ratings"
+        ],
+        "operationId": "Ratings_Search",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "adventureId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "take",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.PagedResultModel[GamePlayer.Business.WebAPI.Contracts.Models.RatingModel]"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/Ratings/{id}": {
+      "put": {
+        "tags": [
+          "Ratings"
+        ],
+        "operationId": "Ratings_Put",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.RatingModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "GamePlayer.Business.WebAPI.Models.LoginRequest": {
+      "type": "object",
+      "properties": {
+        "Username": {
+          "type": "string"
+        },
+        "Password": {
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Models.OAuthAccessTokenResponse": {
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string"
+        },
+        "refresh_token": {
+          "type": "string"
+        },
+        "expires_in": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Models.RefreshAccessTokenRequest": {
+      "type": "object",
+      "properties": {
+        "RefreshToken": {
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AccountModel": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "UserName": {
+          "type": "string"
+        },
+        "PublicGuid": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "Avatar": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.Avatar"
+        },
+        "GeocacheFindCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "CompletedAdventures": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "MembershipLevel": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "SignupDate": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "MembershipExpiryDate": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "HideCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "SecurityGroup": {
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.Avatar": {
+      "type": "object",
+      "properties": {
+        "AvatarUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.NewAccountModel": {
+      "required": [
+        "Email",
+        "Password",
+        "Username",
+        "Locale"
+      ],
+      "type": "object",
+      "properties": {
+        "AgreeToReceiveCompanyRelatedInformation": {
+          "type": "boolean"
+        },
+        "AgreeToTermsAndConditions": {
+          "type": "boolean"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "Password": {
+          "type": "string"
+        },
+        "SubscribeToWeeklyNewsletter": {
+          "type": "boolean"
+        },
+        "SocialMediaAccessToken": {
+          "type": "string"
+        },
+        "SocialMediaProviderId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Username": {
+          "type": "string"
+        },
+        "Locale": {
+          "type": "string"
+        },
+        "HomeCoordinate": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Shared.GeoLocation"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Shared.GeoLocation": {
+      "type": "object",
+      "properties": {
+        "Latitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "Longitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "Altitude": {
+          "format": "double",
+          "type": "number"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.CreateAccountResponse": {
+      "type": "object",
+      "properties": {
+        "SignupResponse": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AccountModel"
+        },
+        "LoginResponse": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Models.OAuthAccessTokenResponse"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.SocialMediaLoginModel": {
+      "required": [
+        "SocialMediaAccessToken"
+      ],
+      "type": "object",
+      "properties": {
+        "SocialMediaAccessToken": {
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.OAuthLoginModel": {
+      "required": [
+        "ProviderTypeId",
+        "OAuthAccessToken"
+      ],
+      "type": "object",
+      "properties": {
+        "ProviderTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "OAuthAccessToken": {
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.OAuthLinkedAccountModel": {
+      "required": [
+        "Username",
+        "Password",
+        "ProviderTypeId",
+        "OAuthAccessToken"
+      ],
+      "type": "object",
+      "properties": {
+        "Username": {
+          "type": "string"
+        },
+        "Password": {
+          "type": "string"
+        },
+        "ProviderTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "OAuthAccessToken": {
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData": {
+      "type": "object",
+      "properties": {
+        "Player": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData.GDPRPlayerMetaData"
+        },
+        "Adventures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData.GDPRAdventureMetaData"
+          }
+        },
+        "PlayerStates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData.GDPRPlayerStateMetaData"
+          }
+        },
+        "LabCacheLogs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData.GDPRLabCacheLog"
+          }
+        },
+        "ActivityLogs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData.GDPRActivityLog"
+          }
+        },
+        "Ratings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData.GDPRRating"
+          }
+        },
+        "SearchRegistration": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData.GDPRSearchRegistration"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData.GDPRPlayerMetaData": {
+      "type": "object",
+      "properties": {
+        "PublicGuid": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "CreatedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "ModifiedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "IsBuilderAccessEnabled": {
+          "type": "boolean"
+        },
+        "AdventureCredits": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "MaxGeocachesPerAdventure": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData.GDPRAdventureMetaData": {
+      "type": "object",
+      "properties": {
+        "AdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "FirebaseDynamicLink": {
+          "type": "string"
+        },
+        "CartridgeJson": {
+          "type": "string"
+        },
+        "CreatedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "ModifiedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "IsArchived": {
+          "type": "boolean"
+        },
+        "IsTest": {
+          "type": "boolean"
+        },
+        "Visibility": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "type": "integer"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData.GDPRPlayerStateMetaData": {
+      "type": "object",
+      "properties": {
+        "AdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "IsComplete": {
+          "type": "boolean"
+        },
+        "CartridgePlayerStateJson": {
+          "type": "string"
+        },
+        "CreatedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "ModifiedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "CompletedDateUtc": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData.GDPRLabCacheLog": {
+      "type": "object",
+      "properties": {
+        "AdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "GeocacheId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "DateLoggedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "DateCreatedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "IsArchived": {
+          "type": "boolean"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData.GDPRActivityLog": {
+      "type": "object",
+      "properties": {
+        "AdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "LogText": {
+          "type": "string"
+        },
+        "CreatedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "ModifiedUtc": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData.GDPRRating": {
+      "type": "object",
+      "properties": {
+        "AdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "Value": {
+          "format": "double",
+          "type": "number"
+        },
+        "CreatedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "ModifiedUtc": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AccountGDPRData.GDPRSearchRegistration": {
+      "type": "object",
+      "properties": {
+        "Latitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "Longitude": {
+          "format": "double",
+          "type": "number"
+        },
+        "CreatedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "ModifiedUtc": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Models.SocialMediaCreateAccountModel": {
+      "required": [
+        "Username",
+        "SocialMediaAccessToken",
+        "Locale"
+      ],
+      "type": "object",
+      "properties": {
+        "Username": {
+          "type": "string"
+        },
+        "SocialMediaAccessToken": {
+          "type": "string"
+        },
+        "Locale": {
+          "type": "string"
+        },
+        "AgreeToReceiveCompanyRelatedInformation": {
+          "type": "boolean"
+        },
+        "SubscribeToWeeklyNewsletter": {
+          "type": "boolean"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Models.OAuthCreateAccountModel": {
+      "required": [
+        "ProviderTypeId",
+        "Username",
+        "OAuthToken",
+        "Locale"
+      ],
+      "type": "object",
+      "properties": {
+        "ProviderTypeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Username": {
+          "type": "string"
+        },
+        "OAuthToken": {
+          "type": "string"
+        },
+        "Locale": {
+          "type": "string"
+        },
+        "AgreeToReceiveCompanyRelatedInformation": {
+          "type": "boolean"
+        },
+        "SubscribeToWeeklyNewsletter": {
+          "type": "boolean"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.PagedResultModel[GamePlayer.Business.WebAPI.Contracts.Models.ActivityLogModel]": {
+      "type": "object",
+      "properties": {
+        "TotalCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "Items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.ActivityLogModel"
+          }
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.ActivityLogModel": {
+      "type": "object",
+      "properties": {
+        "LogText": {
+          "type": "string"
+        },
+        "CreatedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "PlayerPublicGuid": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "PlayerAvatarUrl": {
+          "type": "string"
+        },
+        "PlayerUsername": {
+          "type": "string"
+        },
+        "PlayerGeocacheFindCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "AdventureCompletedDateUtc": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.UserActivityLogModel": {
+      "type": "object",
+      "properties": {
+        "LogText": {
+          "type": "string"
+        },
+        "CreatedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "PlayerPublicGuid": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "Rating": {
+          "format": "double",
+          "type": "number"
+        },
+        "AdventureCompletedDateUtc": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.PagedResultModel[GamePlayer.Business.WebAPI.Managers.AdventureLeaderboardManager]": {
+      "type": "object",
+      "properties": {
+        "TotalCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "Items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Managers.AdventureLeaderboardManager"
+          }
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Managers.AdventureLeaderboardManager": {
+      "type": "object",
+      "properties": {}
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AdventurePlayerState": {
+      "type": "object",
+      "properties": {
+        "IsComplete": {
+          "type": "boolean"
+        },
+        "CompletedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "ActivityLog": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.ActivityLogModel"
+        },
+        "Rating": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.RatingModel"
+        },
+        "Stages": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AdventureStagePlayerState"
+          }
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.RatingModel": {
+      "type": "object",
+      "properties": {
+        "Value": {
+          "format": "double",
+          "type": "number"
+        },
+        "Review": {
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AdventureStagePlayerState": {
+      "type": "object",
+      "properties": {
+        "IsComplete": {
+          "type": "boolean"
+        },
+        "IsLocked": {
+          "type": "boolean"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.PagedResultModel[GamePlayer.Business.WebAPI.Contracts.Models.AdventureBasicInfoModel]": {
+      "type": "object",
+      "properties": {
+        "TotalCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "Items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AdventureBasicInfoModel"
+          }
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AdventureBasicInfoModel": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "KeyImageUrl": {
+          "type": "string"
+        },
+        "SmartLink": {
+          "type": "string"
+        },
+        "DeepLink": {
+          "type": "string"
+        },
+        "FirebaseDynamicLink": {
+          "type": "string"
+        },
+        "MedianTimeToComplete": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "OwnerPublicGuid": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "Visibility": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "type": "integer"
+        },
+        "CreatedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "PublishedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "IsArchived": {
+          "type": "boolean"
+        },
+        "RatingsAverage": {
+          "format": "double",
+          "type": "number"
+        },
+        "RatingsTotalCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "Location": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Shared.GeoLocation"
+        },
+        "StagesTotalCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "IsTest": {
+          "type": "boolean"
+        },
+        "IsComplete": {
+          "type": "boolean"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AdventureCompletedByUsers": {
+      "type": "object",
+      "properties": {
+        "AdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "CompletedByUsers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.CompletedByUser"
+          }
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.CompletedByUser": {
+      "type": "object",
+      "properties": {
+        "PublicGuid": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.ReportAdventureModel": {
+      "type": "object",
+      "properties": {
+        "AdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "ReportType": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "type": "integer"
+        },
+        "Email": {
+          "type": "string"
+        },
+        "Phone": {
+          "type": "string"
+        },
+        "Details": {
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.EnterFindCodeModel": {
+      "type": "object",
+      "properties": {
+        "GeocacheId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "AdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "FindCode": {
+          "type": "string"
+        },
+        "Location": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Shared.GeoLocation"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AdventureModel": {
+      "required": [
+        "Title",
+        "Description",
+        "GeocacheSummaries"
+      ],
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "Title": {
+          "maxLength": 150,
+          "minLength": 0,
+          "type": "string"
+        },
+        "Description": {
+          "maxLength": 1024,
+          "minLength": 0,
+          "type": "string"
+        },
+        "Visibility": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "type": "integer"
+        },
+        "IsPublic": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "PublishedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "CompletedGeocachesCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "TotalGeocachesCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "StagesTotalCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "KeyImageUrl": {
+          "type": "string"
+        },
+        "Location": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Shared.GeoLocation"
+        },
+        "IsComplete": {
+          "type": "boolean"
+        },
+        "IsTest": {
+          "type": "boolean"
+        },
+        "SmartLinkString": {
+          "maxLength": 40,
+          "minLength": 0,
+          "type": "string"
+        },
+        "DeepLink": {
+          "type": "string"
+        },
+        "FirebaseDynamicLink": {
+          "type": "string"
+        },
+        "ClonedSourceAdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "TestAdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "LastUpdateDateTimeUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "AwardVideoYouTubeId": {
+          "type": "string"
+        },
+        "AwardMessage": {
+          "type": "string"
+        },
+        "GeocacheSummaries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.GeocacheSummaryModel"
+          }
+        },
+        "OwnerUsername": {
+          "type": "string"
+        },
+        "OwnerId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "AwardImageAsBase64String": {
+          "type": "string"
+        },
+        "KeyImageAsBase64String": {
+          "type": "string"
+        },
+        "IsLinear": {
+          "type": "boolean"
+        },
+        "AdventureType": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "type": "integer"
+        },
+        "RatingsAverage": {
+          "format": "double",
+          "type": "number"
+        },
+        "RatingsTotalCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "MedianTimeToComplete": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ReviewsTotalCount": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.GeocacheSummaryModel": {
+      "required": [
+        "Title",
+        "Description",
+        "Question",
+        "CompletionCode"
+      ],
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "Title": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "KeyImageUrl": {
+          "type": "string"
+        },
+        "FindCodeHashBase16": {
+          "type": "string"
+        },
+        "FindCodeHashBase16v2": {
+          "type": "string"
+        },
+        "IsComplete": {
+          "type": "boolean"
+        },
+        "AwardImageUrl": {
+          "type": "string"
+        },
+        "AwardVideoYouTubeId": {
+          "type": "string"
+        },
+        "CompletionAwardMessage": {
+          "maxLength": 140,
+          "minLength": 0,
+          "type": "string"
+        },
+        "Description": {
+          "maxLength": 1024,
+          "minLength": 0,
+          "type": "string"
+        },
+        "Location": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Shared.GeoLocation"
+        },
+        "GeofencingRadius": {
+          "format": "double",
+          "maximum": 100000,
+          "minimum": 20,
+          "type": "number"
+        },
+        "ChallengeType": {
+          "format": "int32",
+          "enum": [
+            0,
+            1
+          ],
+          "type": "integer"
+        },
+        "Question": {
+          "maxLength": 144,
+          "minLength": 0,
+          "type": "string"
+        },
+        "CompletionCode": {
+          "type": "string"
+        },
+        "MultiChoiceOptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.MultiChoiceOption"
+          }
+        },
+        "IsFinal": {
+          "type": "boolean"
+        },
+        "UnlockingStages": {
+          "type": "array",
+          "items": {
+            "format": "uuid",
+            "type": "string",
+            "example": "00000000-0000-0000-0000-000000000000"
+          }
+        },
+        "KeyImage": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Shared.ImageInfo"
+        },
+        "LastUpdateDateTimeUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "DescriptionVideoYouTubeId": {
+          "type": "string"
+        },
+        "AwardImageAsBase64String": {
+          "type": "string"
+        },
+        "KeyImageAsBase64String": {
+          "type": "string"
+        },
+        "DeleteAwardImage": {
+          "type": "boolean"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.MultiChoiceOption": {
+      "type": "object",
+      "properties": {
+        "Text": {
+          "type": "string"
+        },
+        "Order": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Shared.ImageInfo": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "BlobId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "ImageUri": {
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Builder.Adventure": {
+      "required": [
+        "Title",
+        "Description",
+        "GeocacheSummaries"
+      ],
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "Title": {
+          "maxLength": 150,
+          "minLength": 0,
+          "type": "string"
+        },
+        "Description": {
+          "maxLength": 1024,
+          "minLength": 0,
+          "type": "string"
+        },
+        "Visibility": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "type": "integer"
+        },
+        "IsPublic": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "PublishedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "CompletedGeocachesCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "TotalGeocachesCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "StagesTotalCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "KeyImageUrl": {
+          "type": "string"
+        },
+        "Location": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Shared.GeoLocation"
+        },
+        "IsComplete": {
+          "type": "boolean"
+        },
+        "IsTest": {
+          "type": "boolean"
+        },
+        "SmartLinkString": {
+          "maxLength": 40,
+          "minLength": 0,
+          "type": "string"
+        },
+        "DeepLink": {
+          "type": "string"
+        },
+        "FirebaseDynamicLink": {
+          "type": "string"
+        },
+        "ClonedSourceAdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "TestAdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "LastUpdateDateTimeUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "AwardVideoYouTubeId": {
+          "type": "string"
+        },
+        "AwardMessage": {
+          "type": "string"
+        },
+        "GeocacheSummaries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Builder.Stage"
+          }
+        },
+        "OwnerUsername": {
+          "type": "string"
+        },
+        "OwnerId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "AwardImageAsBase64String": {
+          "type": "string"
+        },
+        "KeyImageAsBase64String": {
+          "type": "string"
+        },
+        "IsLinear": {
+          "type": "boolean"
+        },
+        "AdventureType": {
+          "format": "int32",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "type": "integer"
+        },
+        "RatingsAverage": {
+          "format": "double",
+          "type": "number"
+        },
+        "RatingsTotalCount": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Builder.Stage": {
+      "required": [
+        "Title",
+        "Description",
+        "Question"
+      ],
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "Title": {
+          "maxLength": 50,
+          "minLength": 0,
+          "type": "string"
+        },
+        "KeyImageUrl": {
+          "type": "string"
+        },
+        "FindCodeHashBase16": {
+          "type": "string"
+        },
+        "FindCodeHashBase16v2": {
+          "type": "string"
+        },
+        "IsComplete": {
+          "type": "boolean"
+        },
+        "AwardImageUrl": {
+          "type": "string"
+        },
+        "AwardVideoYouTubeId": {
+          "type": "string"
+        },
+        "CompletionAwardMessage": {
+          "maxLength": 140,
+          "minLength": 0,
+          "type": "string"
+        },
+        "Description": {
+          "maxLength": 1024,
+          "minLength": 0,
+          "type": "string"
+        },
+        "Location": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Shared.GeoLocation"
+        },
+        "GeofencingRadius": {
+          "format": "double",
+          "maximum": 100000,
+          "minimum": 20,
+          "type": "number"
+        },
+        "ChallengeType": {
+          "format": "int32",
+          "enum": [
+            0,
+            1
+          ],
+          "type": "integer"
+        },
+        "Question": {
+          "maxLength": 144,
+          "minLength": 0,
+          "type": "string"
+        },
+        "CompletionCode": {
+          "type": "string"
+        },
+        "MultiChoiceOptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Builder.MultiChoiceOption"
+          }
+        },
+        "UnlockingStages": {
+          "type": "array",
+          "items": {
+            "format": "uuid",
+            "type": "string",
+            "example": "00000000-0000-0000-0000-000000000000"
+          }
+        },
+        "IsFinal": {
+          "type": "boolean"
+        },
+        "KeyImage": {
+          "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Shared.ImageInfo"
+        },
+        "LastUpdateDateTimeUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "DescriptionVideoYouTubeId": {
+          "type": "string"
+        },
+        "AwardImageAsBase64String": {
+          "type": "string"
+        },
+        "KeyImageAsBase64String": {
+          "type": "string"
+        },
+        "DeleteAwardImage": {
+          "type": "boolean"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Builder.MultiChoiceOption": {
+      "type": "object",
+      "properties": {
+        "Text": {
+          "type": "string"
+        },
+        "IsCorrect": {
+          "type": "boolean"
+        },
+        "Order": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Builder.CloneAdventureModel": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "NewTitlePrefix": {
+          "type": "string"
+        },
+        "IsTest": {
+          "type": "boolean"
+        },
+        "TestAdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AdventureStatistics": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "TotalParticipants": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "TotalCompletions": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "TotalGeocacheCompletions": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "GeocacheStatistics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.GeocacheStatistics"
+          }
+        },
+        "AdventurePlayerStatistics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.AdventurePlayerStatistics"
+          }
+        },
+        "ExecutionTime": {
+          "type": "string"
+        },
+        "SpecifiedPlayerAdventureRank": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "TotalAdventureCompletions": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.GeocacheStatistics": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "AdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "TotalCompletions": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "GeocachePlayerStatistics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.GeocachePlayerStatistics"
+          }
+        },
+        "SpecifiedPlayerGeocacheRank": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AdventurePlayerStatistics": {
+      "type": "object",
+      "properties": {
+        "PlayerId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "AdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "Username": {
+          "type": "string"
+        },
+        "DateCompletedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "TimeOffsetFromFtf": {
+          "type": "string"
+        },
+        "GeocachingAccountCreationDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.GeocachePlayerStatistics": {
+      "type": "object",
+      "properties": {
+        "PlayerId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "Username": {
+          "type": "string"
+        },
+        "GeocacheId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "AdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "DateCompletedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "TimeOffsetFromFtf": {
+          "type": "string"
+        },
+        "GeocachingAccountCreationDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AdventureBasicInfoSearchRequest": {
+      "type": "object",
+      "properties": {
+        "TitleSearch": {
+          "type": "string"
+        },
+        "Visibilities": {
+          "type": "array",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "OwnerPublicGuid": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "SortField": {
+          "type": "string"
+        },
+        "Asc": {
+          "type": "boolean"
+        },
+        "Skip": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Take": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.AdminLevelAdventureStatistics": {
+      "type": "object",
+      "properties": {
+        "AdventuresTotal": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "AdventuresPrivate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "AdventuresOff": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "AdventuresPublic": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.OwnerModel": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "Adventures": {
+          "type": "array",
+          "items": {
+            "format": "uuid",
+            "type": "string",
+            "example": "00000000-0000-0000-0000-000000000000"
+          }
+        },
+        "Geocaches": {
+          "type": "array",
+          "items": {
+            "format": "uuid",
+            "type": "string",
+            "example": "00000000-0000-0000-0000-000000000000"
+          }
+        },
+        "IsAccessDisabled": {
+          "type": "boolean"
+        },
+        "AdventureCredits": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "GeocacheCredits": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "MaxGeocachesPerAdventure": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.PlaylistModel": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "LocalizedTitle": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "Videos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.VideoModel"
+          }
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.VideoModel": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Duration": {
+          "type": "string"
+        },
+        "LocalizedTitle": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "ChannelTitle": {
+          "type": "string"
+        },
+        "ChannelThumbUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.GeocacheLogAdventureGrouping": {
+      "type": "object",
+      "properties": {
+        "AdventureId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "AdventureTitle": {
+          "type": "string"
+        },
+        "AdventureKeyImageUrl": {
+          "type": "string"
+        },
+        "DateLastLoggedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "GeocacheLogs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.GeocacheLog"
+          }
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.GeocacheLog": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "GeocacheTitle": {
+          "type": "string"
+        },
+        "DateLoggedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "DateLogged": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "GeocacheId": {
+          "format": "uuid",
+          "type": "string",
+          "example": "00000000-0000-0000-0000-000000000000"
+        },
+        "GeocacheKeyImageUrl": {
+          "type": "string"
+        },
+        "IsArchived": {
+          "type": "boolean"
+        }
+      }
+    },
+    "GamePlayer.Business.WebAPI.Contracts.Models.PagedResultModel[GamePlayer.Business.WebAPI.Contracts.Models.RatingModel]": {
+      "type": "object",
+      "properties": {
+        "TotalCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "Items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GamePlayer.Business.WebAPI.Contracts.Models.RatingModel"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "authorization": {
+      "type": "apiKey",
+      "description": "API Key Authentication",
+      "name": "authorization",
+      "in": "header"
+    }
+  }
+}
